@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public GameObject bubble;
-    public GameObject bullet;
     bool canMove = true;
 
     [SerializeField]
@@ -23,10 +22,6 @@ public class PlayerController : MonoBehaviour {
         if(canMove)
         {
             Move();
-        }
-        if(splitBubble)
-        {
-            splitBubbles();
         }
 	}
     void splitBubbles()
