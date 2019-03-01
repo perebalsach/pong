@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 
@@ -31,7 +32,7 @@ public class BubbleManager : MonoBehaviour {
         float randNum = Random.Range(-SpawnRangeDistance, SpawnRangeDistance);
         Vector3 randPos = new Vector3(randNum, transform.position.y, transform.position.z);
 
-        GameObject bubble = Instantiate(bubbles[bubbleId], randPos, transform.rotation);
+        GameObject bubble = Instantiate(bubbles[bubbleId], randPos, Quaternion.identity);
     }
 
     IEnumerator SpawnBubbles()

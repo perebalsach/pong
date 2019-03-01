@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     float moveSpeed;
-    private bool splitBubble = false;
 
+    private bool splitBubble = false;
+    
 	void Start ()
     {
         
@@ -24,18 +25,28 @@ public class PlayerController : MonoBehaviour {
         {
             Move();
         }
-        if(splitBubble)
-        {
-            splitBubbles();
-        }
 	}
-    void splitBubbles()
+	
+//    private void OnTriggerEnter2D(Collider2D col)
+//    {
+//        splitBubble = true;
+//        Destroy(col.gameObject);
+//        SpawnSplitBubble();
+//    }
+
+
+    private void SpawnSplitBubble()
     {
-        GameObject splitBubble1 = Instantiate(bubble, transform.position, transform.rotation);
-        //splitBubble1.AddComponent<Rigidbody2D>();
+        var playerPos = transform.position;
+        GameObject splitBubble1 = Instantiate(bubble, playerPos, Quaternion.identity) as GameObject;
+        splitBubble1.name = "splittedBubble";
         Rigidbody2D rb = splitBubble1.GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(0, 10f));
-        splitBubble = false;
+        rb.AddForce(new Vector2(0, 5000f));
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        StartCoroutine(Split());
     }
 
     void Move()
@@ -43,9 +54,14 @@ public class PlayerController : MonoBehaviour {
         float xPos = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * xPos * moveSpeed * Time.deltaTime;
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    IEnumerator Split()
     {
-        Destroy(other.gameObject);
-        splitBubble = true;
+        yield return new WaitForSeconds(2.0f);
+
+        while (true)
+        {
+            SpawnSplitBubble();
+        }
     }
 }
