@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public GameObject bubble;
-    public GameObject bullet;
     bool canMove = true;
 
     [SerializeField]
