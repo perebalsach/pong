@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class BubbleCleaner : MonoBehaviour {
 
-	// Use this for initialization
-	void Start ()
-	{
+	//// Use this for initialization
+	//void Start ()
+	//{
 		
-	}
+	//}
 	
-	// Update is called once per frame
-	void Update () 
-	{
+	//// Update is called once per frame
+	//void Update () 
+	//{
 
-	}
+	//}
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-        if(other.tag == "Bubble")
-        {
-            Destroy(other.gameObject);
-        }
-    }
+	//private void OnTriggerEnter2D(Collider2D other)
+	//{
+ //       if(other.tag == "Bubble")
+ //       {
+ //           Destroy(other.gameObject);
+ //       }
+ //   }
 }
